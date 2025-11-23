@@ -11,6 +11,7 @@ public class Despesa extends Movimentacao {
     }
 
     public float mensalizaValor(){
-        return (this.valor*this.freq)/30;
+        return this.valor*this.freq;
     }
 }
+
