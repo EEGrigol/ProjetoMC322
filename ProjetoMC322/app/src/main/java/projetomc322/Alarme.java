@@ -1,7 +1,7 @@
 package projetomc322;
 
 public interface Alarme {
-    abstract public boolean checkLimiteCampoDespesa(CampoDespesa campoDespesa);
+    abstract public void checkLimiteCampoDespesa(CampoDespesa campoDespesa);
 
-    abstract public boolean checkLimiteTotal(Gerenciador gerenciador);
+    abstract public void checkLimiteTotal(Gerenciador gerenciador);
 }

@@ -1,5 +1,8 @@
 package projetomc322;
 
+/**
+ * representa uma receita
+ */
 public class Receita extends Movimentacao {
     private float valorMensalizado;
 
@@ -7,10 +10,6 @@ public class Receita extends Movimentacao {
         this.nome = nome;
         this.valor = valor;
         this.freq = freq;
-        this.valorMensalizado = this.mensalizaValor();
-    }
-
-    public float mensalizaValor(){
-        return (this.valor*this.freq)/30;
+        this.valorMensalizado = this.valor*this.freq;
     }
 }
