@@ -13,3 +13,4 @@ public class Receita extends Movimentacao {
         this.valorMensalizado = this.valor*this.freq;
     }
 }
+
