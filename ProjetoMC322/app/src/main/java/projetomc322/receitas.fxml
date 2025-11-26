@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+
+<VBox spacing="12" alignment="CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="projetomc322.ReceitasController"
+      prefWidth="400" prefHeight="300">
+
+    <Label text="Adicionar Receita" style="-fx-font-size: 18px;"/>
+
+    <TextField fx:id="campoNome" promptText="Nome da receita"/>
+
+    <TextField fx:id="campoValor" promptText="Valor (ex: 100.00)"/>
+
+    <ComboBox fx:id="campoFrequencia">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String>Mensal</String>
+                <String>Semanal</String>
+                <String>Anual</String>
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <Button text="Adicionar" onAction="#adicionarReceita"/>
+
+    <Label fx:id="mensagem" />
+
+</VBox>
