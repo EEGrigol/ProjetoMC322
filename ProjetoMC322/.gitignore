@@ -1,3 +1,4 @@
+# --- Arquivos Compilados ---
 *.class
 *.jar
 *.war
@@ -6,36 +7,37 @@
 *.tar.gz
 *.rar
 
+# --- Logs ---
 hs_err_pid*
 
+# --- Gradle ---
 .gradle/
 build/
 !gradle-wrapper.jar
 !gradle-wrapper.properties
 
+# --- VSCode ---
 .vscode/
 bin/
 **/*.code-workspace
 
-Eclipse
-
+# --- Eclipse ---
 .metadata
 .classpath
 .project
 .settings/
 
-IntelliJ
-
+# --- IntelliJ ---
 .idea/
 *.iml
 *.iws
 *.ipr
 out/
 
+# --- Sistema Operacional ---
 .DS_Store
 Thumbs.db
 
-Ignora os arquivos XML gerados
-
+# --- Ignora os arquivos XML gerados ---
 dados_*.xml
 *.xml.bak
