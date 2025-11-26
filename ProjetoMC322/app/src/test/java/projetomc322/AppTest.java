@@ -46,13 +46,13 @@ class AppTest {
     void deveCalcularTotalDespesasCorretamente() {
         CampoDespesa campoDespesa = new CampoDespesa("Despesas Fixas");
 
-        Despesa despesaMensal = new Despesa("Aluguel", 200f, 1);
-        Despesa despesaSemanal = new Despesa("Transporte", 50f, 4);
+        Despesa despesaMensal = new Despesa("Aluguel", 100f, 1);
+        Despesa despesaSemanal = new Despesa("Transporte", 25f, 4);
 
         campoDespesa.AddDespesa(despesaMensal);
         campoDespesa.AddDespesa(despesaSemanal);
 
-        float esperado = 400f;
+        float esperado = 200f;
 
         assertEquals(esperado, campoDespesa.CalulaValorTotal());
     }
