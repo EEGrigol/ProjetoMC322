@@ -29,9 +29,16 @@ dependencies {
 
     // This dependency is used by the application.
     implementation libs.guava
+<<<<<<< HEAD
     
     implementation "org.openjfx:javafx-controls:21"
     implementation "org.openjfx:javafx-fxml:21"
+=======
+
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
+    implementation 'javax.activation:javax.activation-api:1.2.0'
+>>>>>>> 8d3fd3fd1849feb933eac33bff05be59ebf8c433
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

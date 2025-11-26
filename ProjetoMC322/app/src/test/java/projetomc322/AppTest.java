@@ -1,11 +1,5 @@
 package projetomc322;
 
-// importações solicitadas
-import projetomc322.CampoReceita;
-import projetomc322.CampoDespesa;
-import projetomc322.Receita;
-import projetomc322.Despesa;
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,12 +13,12 @@ class AppTest {
         Receita receitaMensal = new Receita("Salário", 100f, 1);
         Receita receitaSemanal = new Receita("Freelancer", 25f, 4);
 
-        campoReceita.AddReceita(receitaMensal);
-        campoReceita.AddReceita(receitaSemanal);
+        campoReceita.addReceita(receitaMensal);
+        campoReceita.addReceita(receitaSemanal);
 
         float esperado = 200f;
 
-        assertEquals(esperado, campoReceita.CalculaReceitaTotal());
+        assertEquals(esperado, campoReceita.calculaReceitaTotal());
     }
 
     @Test
@@ -37,7 +31,7 @@ class AppTest {
     field.set(campoReceita, null);
 
     assertThrows(NullPointerException.class, () -> {
-        campoReceita.CalculaReceitaTotal();
+        campoReceita.calculaReceitaTotal();
     });
 }
     /**
@@ -51,11 +45,11 @@ class AppTest {
         Despesa despesaMensal = new Despesa("Aluguel", 100f, 1);
         Despesa despesaSemanal = new Despesa("Transporte", 25f, 4);
 
-        campoDespesa.AddDespesas(despesaMensal);
-        campoDespesa.AddDespesas(despesaSemanal);
+        campoDespesa.addDespesas(despesaMensal);
+        campoDespesa.addDespesas(despesaSemanal);
 
         float esperado = 200f;
 
-        assertEquals(esperado, campoDespesa.CalculaValorTotal());
+        assertEquals(esperado, campoDespesa.calculaValorTotal());
     }
 }
