@@ -28,16 +28,18 @@ class AppTest {
     }
 
     @Test
-    void deveLancarExcecaoQuandoListaNull() {
-        CampoReceita campoReceita = new CampoReceita("Receitas");
+    void deveLancarExcecaoQuandoListaInternaForNull() throws Exception {
+    CampoReceita campoReceita = new CampoReceita("Receitas");
 
-        // Este teste verifica se o método calculaTotalMensal(null)
-        // lança uma NullPointerException
-        assertThrows(NullPointerException.class, () -> {
-            campoReceita.CalulaValorTotal(null);
-        });
-    }
+    // força a lista interna a ser null
+    var field = CampoReceita.class.getDeclaredField("ListaReceitas");
+    field.setAccessible(true);
+    field.set(campoReceita, null);
 
+    assertThrows(NullPointerException.class, () -> {
+        campoReceita.CalulaReceitaTotal();
+    });
+}
     /**
      * Teste equivalente para CampoDespesa
      * valida o cálculo total de despesas mensais
@@ -49,8 +51,8 @@ class AppTest {
         Despesa despesaMensal = new Despesa("Aluguel", 100f, 1);
         Despesa despesaSemanal = new Despesa("Transporte", 25f, 4);
 
-        campoDespesa.AddDespesa(despesaMensal);
-        campoDespesa.AddDespesa(despesaSemanal);
+        campoDespesa.AddDespesas(despesaMensal);
+        campoDespesa.AddDespesas(despesaSemanal);
 
         float esperado = 200f;
 
