@@ -1,17 +1,9 @@
 package projetomc322;
 
-// importações solicitadas
-import projetomc322.CampoReceita;
-import projetomc322.CampoDespesa;
-import projetomc322.Receita;
-import projetomc322.Despesa;
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-<<<<<<< HEAD
-=======
 
     @Test
     void deveCalcularTotalMensalCorretamente() {
@@ -21,25 +13,27 @@ class AppTest {
         Receita receitaMensal = new Receita("Salário", 100f, 1);
         Receita receitaSemanal = new Receita("Freelancer", 25f, 4);
 
-        campoReceita.AddReceita(receitaMensal);
-        campoReceita.AddReceita(receitaSemanal);
+        campoReceita.addReceita(receitaMensal);
+        campoReceita.addReceita(receitaSemanal);
 
         float esperado = 200f;
 
-        assertEquals(esperado, campoReceita.CalulaReceitaTotal());
+        assertEquals(esperado, campoReceita.calculaReceitaTotal());
     }
 
     @Test
-    void deveLancarExcecaoQuandoListaNull() {
-        CampoReceita campoReceita = new CampoReceita("Receitas");
+    void deveLancarExcecaoQuandoListaInternaForNull() throws Exception {
+    CampoReceita campoReceita = new CampoReceita("Receitas");
 
-        // Este teste verifica se o método calculaTotalMensal(null)
-        // lança uma NullPointerException
-        assertThrows(NullPointerException.class, () -> {
-            campoReceita.CalulaValorTotal(null);
-        });
-    }
+    // força a lista interna a ser null
+    var field = CampoReceita.class.getDeclaredField("ListaReceitas");
+    field.setAccessible(true);
+    field.set(campoReceita, null);
 
+    assertThrows(NullPointerException.class, () -> {
+        campoReceita.calculaReceitaTotal();
+    });
+}
     /**
      * Teste equivalente para CampoDespesa
      * valida o cálculo total de despesas mensais
@@ -51,12 +45,11 @@ class AppTest {
         Despesa despesaMensal = new Despesa("Aluguel", 100f, 1);
         Despesa despesaSemanal = new Despesa("Transporte", 25f, 4);
 
-        campoDespesa.AddDespesa(despesaMensal);
-        campoDespesa.AddDespesa(despesaSemanal);
+        campoDespesa.addDespesas(despesaMensal);
+        campoDespesa.addDespesas(despesaSemanal);
 
         float esperado = 200f;
 
-        assertEquals(esperado, campoDespesa.CalulaValorTotal());
+        assertEquals(esperado, campoDespesa.calculaValorTotal());
     }
->>>>>>> 89da754287882e9a940f2728542c3fd8ca67afef
 }
