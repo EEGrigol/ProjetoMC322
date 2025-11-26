@@ -3,16 +3,25 @@ package projetomc322;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  * Gerenciador
  * Classe responsavel por gerenciar os campos de receita e despesa
  * e suas respectivas movimentacoes
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Gerenciador {
-    private List<CampoDespesa> ListaCampoDespesa = new ArrayList<>();
-    private List<CampoReceita> ListaCampoReceita = new ArrayList<>();
-    private FeatureAlarme alarme;
+    private List<CampoDespesa> listaCampoDespesa = new ArrayList<>();
+    private List<CampoReceita> listaCampoReceita = new ArrayList<>();
     private float valorLimiteGeral;
+
+    @XmlTransient
+    private FeatureAlarme alarme;
 
     public Gerenciador(){
         alarme = new FeatureAlarme();
@@ -28,14 +37,14 @@ public class Gerenciador {
      * @param nome nome do campo
      * @return 0 se sucesso, 1 se ja existe campo com esse nome
      */
-    public int AddCampo(char tipo, String nome){
+    public int addCampo(char tipo, String nome){
         if(tipo == 'r'){
             if(this.existeCampoReceita(nome)) return 1;
-            ListaCampoReceita.add(new CampoReceita(nome));
+            listaCampoReceita.add(new CampoReceita(nome));
         }
         if( tipo == 'd'){
             if(this.existeCampoDespesa(nome)) return 1;
-            ListaCampoDespesa.add(new CampoDespesa(nome));
+            listaCampoDespesa.add(new CampoDespesa(nome));
         }
         return 0;
     }
@@ -45,27 +54,27 @@ public class Gerenciador {
      * @param tipo 'r' para receita, 'd' para despesa
      * @param nomeCampo nome do campo onde a movimentacao sera adicionada
      * @param nomeMov nome da movimentacao
-     * @param Valor valor da movimentacao
+     * @param valor valor da movimentacao
      * @param freq frequencia da movimentacao
      * @return 0 se sucesso, 1 se ja existe movimentacao com esse nome
      */
-    public int AddMov(char tipo, String nomeCampo, String nomeMov, float Valor, int freq){
+    public int addMov(char tipo, String nomeCampo, String nomeMov, float valor, int freq){
         if(tipo == 'r'){
-            Receita receita = new Receita(nomeMov, Valor, freq);
-            for(CampoReceita campoReceita : ListaCampoReceita){
+            Receita receita = new Receita(nomeMov, valor, freq);
+            for(CampoReceita campoReceita : listaCampoReceita){
                 if(campoReceita.getNome().equals(nomeCampo)){
                     if(campoReceita.existeReceita(nomeMov)) return 1;
-                    campoReceita.AddReceita(receita);
+                    campoReceita.addReceita(receita);
                     return 0;
                 }
             }
         }
         if(tipo == 'd'){
-            Despesa despesa = new Despesa(nomeMov, Valor, freq);
-            for(CampoDespesa campoDespesa : ListaCampoDespesa){
+            Despesa despesa = new Despesa(nomeMov, valor, freq);
+            for(CampoDespesa campoDespesa : listaCampoDespesa){
                 if(campoDespesa.getNome().equals(nomeCampo)){
                     if(campoDespesa.existeDespesa(nomeMov)) return 1;
-                    campoDespesa.AddDespesas(despesa);
+                    campoDespesa.addDespesas(despesa);
                     return 0;
                 }
             }
@@ -73,17 +82,35 @@ public class Gerenciador {
         return 0;
     }
 
-
     /**
      * calcula o total de receitas mensais
      * @return total de receitas mensais
      */
-    public float CalulaDespesaTotal(){
+    public float calculaReceitaTotal() {
         float soma = 0;
-        for(CampoDespesa campoDespesa : ListaCampoDespesa){
-            soma += campoDespesa.CalulaValorTotal();
+        for (CampoReceita campo : listaCampoReceita) {
+            soma += campo.calculaValorTotal();
         }
         return soma;
+    }
+
+    /**
+     * calcula o total de despesas mensais
+     * @return total de despesas mensais
+     */
+    public float calculaDespesaTotal(){
+        float soma = 0;
+        for(CampoDespesa campoDespesa : listaCampoDespesa){
+            soma += campoDespesa.calculaValorTotal();
+        }
+        return soma;
+    }
+
+    /**
+     * calcula o saldo final (receitas - despesas)
+     */
+    public double getSaldoFinal() {
+        return calculaReceitaTotal() - calculaDespesaTotal();
     }
 
     /**
@@ -92,8 +119,9 @@ public class Gerenciador {
      * @return true se existe, false caso contrario
      */
     private boolean existeCampoReceita(String nome){
-        for(CampoReceita campoReceita : ListaCampoReceita){
-            if( campoReceita.getNome().equals(nome)) return true;
+        for(CampoReceita campoReceita : listaCampoReceita){
+            if(campoReceita.getNome().equals(nome)) 
+                return true;
         }
         return false;
     }
@@ -104,8 +132,9 @@ public class Gerenciador {
      * @return true se existe, false caso contrario
      */
     private boolean existeCampoDespesa(String nome){
-        for(CampoDespesa campoDespesa : ListaCampoDespesa){
-            if( campoDespesa.getNome().equals(nome)) return true;
+        for(CampoDespesa campoDespesa : listaCampoDespesa){
+            if( campoDespesa.getNome().equals(nome)) 
+                return true;
         }
         return false;
     }

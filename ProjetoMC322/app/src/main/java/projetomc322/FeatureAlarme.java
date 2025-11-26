@@ -4,10 +4,10 @@ package projetomc322;
  * representa um alarme para verificacao de limites
  */
 public class FeatureAlarme implements Alarme {
-    private boolean AlarmeLigado;
+    private boolean alarmeLigado;
 
     public FeatureAlarme(){
-        AlarmeLigado = false;
+        alarmeLigado = false;
     }
 
     /**
@@ -16,9 +16,9 @@ public class FeatureAlarme implements Alarme {
      * liga o alarme se o valor total ultrapassar o limite
      */
     public void checkLimiteCampoDespesa(CampoDespesa campoDespesa){
-        float valorTotal = campoDespesa.CalulaValorTotal();
-        if(valorTotal > campoDespesa.getValorLimite()) this.AlarmeLigado = true;
-        else this.AlarmeLigado = false;
+        float valorTotal = campoDespesa.calculaValorTotal();
+        if(valorTotal > campoDespesa.getValorLimite()) this.alarmeLigado = true;
+        else this.alarmeLigado = false;
     };
 
     /**
@@ -27,8 +27,8 @@ public class FeatureAlarme implements Alarme {
      * liga o alarme se o valor total de despesas ultrapassar o limite geral
      */
     public void checkLimiteTotal(Gerenciador gerenciador){
-        if(gerenciador.CalulaDespesaTotal() > gerenciador.getValorLimiteGeral()) this.AlarmeLigado = true;
-        else this.AlarmeLigado = false;
+        if(gerenciador.calculaDespesaTotal() > gerenciador.getValorLimiteGeral()) this.alarmeLigado = true;
+        else this.alarmeLigado = false;
     }
 
 }

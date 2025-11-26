@@ -7,8 +7,8 @@ import java.util.List;
  * representa um campo de despesa
  */
 public class CampoDespesa extends Campo {
-    private List<Despesa> ListaDespesas = new ArrayList<>();
-    private float ValorLimite;
+    private List<Despesa> listaDespesas = new ArrayList<>();
+    private float valorLimite;
 
     public CampoDespesa(String nome){
         this.nome = nome;
@@ -19,24 +19,24 @@ public class CampoDespesa extends Campo {
      * @param limite valor limite a ser definido
      */
     public void setValorLimite(float limite){
-        this.ValorLimite = limite;
+        this.valorLimite = limite;
     }
 
     /**
      * adiciona uma nova despesa
      * @param despesa despesa a ser adicionada
      */
-    public void AddDespesas(Despesa despesa){
-        ListaDespesas.add(despesa);
+    public void addDespesas(Despesa despesa){
+        listaDespesas.add(despesa);
     }
 
     /**
      * calcula o total de despesas mensais
      * @return total de despesas mensais
      */
-    public float CalulaDespesasTotal(){
+    public float calculaDespesasTotal(){
         float soma = 0;
-        for (Despesa despesa : ListaDespesas){
+        for (Despesa despesa : listaDespesas){
             soma += despesa.getValor() * despesa.freq;
         }
         return soma;
@@ -46,8 +46,8 @@ public class CampoDespesa extends Campo {
      * implementação unificada para obter o total do campo
      */
     @Override
-    public float CalulaValorTotal(){
-        return CalulaDespesasTotal();
+    public float calculaValorTotal(){
+        return calculaDespesasTotal();
     }
 
     /**
@@ -55,7 +55,7 @@ public class CampoDespesa extends Campo {
      * @return valor limite
      */
     public float getValorLimite(){
-        return this.ValorLimite;
+        return this.valorLimite;
     }
 
     /**
@@ -64,7 +64,7 @@ public class CampoDespesa extends Campo {
      * @return true se existe, false caso contrario
      */
     protected boolean existeDespesa(String nome){
-        for (Despesa despesa : ListaDespesas){
+        for (Despesa despesa : listaDespesas){
             if(despesa.getNome().equals(nome)) return true;
         }
         return false;
