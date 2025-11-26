@@ -16,7 +16,7 @@ public class FeatureAlarme implements Alarme {
      * liga o alarme se o valor total ultrapassar o limite
      */
     public void checkLimiteCampoDespesa(CampoDespesa campoDespesa){
-        float valorTotal = campoDespesa.CalulaValorTotal();
+        float valorTotal = campoDespesa.CalculaValorTotal();
         if(valorTotal > campoDespesa.getValorLimite()) this.AlarmeLigado = true;
         else this.AlarmeLigado = false;
     };

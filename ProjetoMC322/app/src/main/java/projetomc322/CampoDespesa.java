@@ -34,7 +34,7 @@ public class CampoDespesa extends Campo {
      * calcula o total de despesas mensais
      * @return total de despesas mensais
      */
-    public float CalulaDespesasTotal(){
+    public float CalculaDespesasTotal(){
         float soma = 0;
         for (Despesa despesa : ListaDespesas){
             soma += despesa.getValor() * despesa.freq;
@@ -46,8 +46,8 @@ public class CampoDespesa extends Campo {
      * implementação unificada para obter o total do campo
      */
     @Override
-    public float CalulaValorTotal(){
-        return CalulaDespesasTotal();
+    public float CalculaValorTotal(){
+        return CalculaDespesasTotal();
     }
 
     /**

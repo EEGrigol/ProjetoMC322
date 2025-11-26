@@ -81,7 +81,7 @@ public class Gerenciador {
     public float CalulaDespesaTotal(){
         float soma = 0;
         for(CampoDespesa campoDespesa : ListaCampoDespesa){
-            soma += campoDespesa.CalulaValorTotal();
+            soma += campoDespesa.CalculaValorTotal();
         }
         return soma;
     }

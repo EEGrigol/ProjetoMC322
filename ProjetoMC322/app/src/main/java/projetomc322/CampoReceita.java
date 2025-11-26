@@ -25,7 +25,7 @@ public class CampoReceita extends Campo {
      * calcula o total de receitas mensais
      * @return total de receitas mensais
      */
-    public float CalulaReceitaTotal(){
+    public float CalculaReceitaTotal(){
         float soma = 0;
         for (Receita receita : ListaReceitas){
             soma += receita.getValor() * receita.freq;
@@ -37,8 +37,8 @@ public class CampoReceita extends Campo {
      * implementação unificada para obter o total do campo
      */
     @Override
-    public float CalulaValorTotal(){
-        return CalulaReceitaTotal();
+    public float CalculaValorTotal(){
+        return CalculaReceitaTotal();
     }
 
     /**

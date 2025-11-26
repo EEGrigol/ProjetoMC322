@@ -9,7 +9,7 @@ public abstract class Campo {
     /**
      * subclasses devem implementar cálculo do valor total do campo (mensalizado)
      */
-    public abstract float CalulaValorTotal();
+    public abstract float CalculaValorTotal();
 
     /**
      * retorna o nome do campo
@@ -24,7 +24,7 @@ public abstract class Campo {
      * @return valor total do campo
      */
     public float getValorTotal(){
-        return CalulaValorTotal();
+        return CalculaValorTotal();
     }
 
 }

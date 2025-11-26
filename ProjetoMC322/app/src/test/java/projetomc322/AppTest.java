@@ -24,7 +24,7 @@ class AppTest {
 
         float esperado = 200f;
 
-        assertEquals(esperado, campoReceita.CalulaReceitaTotal());
+        assertEquals(esperado, campoReceita.CalculaReceitaTotal());
     }
 
     @Test
@@ -37,7 +37,7 @@ class AppTest {
     field.set(campoReceita, null);
 
     assertThrows(NullPointerException.class, () -> {
-        campoReceita.CalulaReceitaTotal();
+        campoReceita.CalculaReceitaTotal();
     });
 }
     /**
@@ -56,6 +56,6 @@ class AppTest {
 
         float esperado = 200f;
 
-        assertEquals(esperado, campoDespesa.CalulaValorTotal());
+        assertEquals(esperado, campoDespesa.CalculaValorTotal());
     }
 }
