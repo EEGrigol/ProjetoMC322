@@ -1,72 +1,57 @@
 package projetomc322;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * representa um campo de despesa
- */
-public class CampoDespesa extends Campo {
-    private List<Despesa> listaDespesas = new ArrayList<>();
+@XmlAccessorType(XmlAccessType.FIELD)
+public class CampoDespesa {
+    public String nome; 
     private float valorLimite;
+    
+    @XmlElement(name = "despesa")
+    private List<Despesa> listaDespesas = new ArrayList<>();
+  
+    public CampoDespesa() {} // Necessário para JAXB
 
+    //Construtor
     public CampoDespesa(String nome){
         this.nome = nome;
     }
 
-    /**
-     * define o valor limite do campo de despesa
-     * @param limite valor limite a ser definido
-     */
+    //Setters e Getters
     public void setValorLimite(float limite){
         this.valorLimite = limite;
     }
 
-    /**
-     * adiciona uma nova despesa
-     * @param despesa despesa a ser adicionada
-     */
-    public void addDespesas(Despesa despesa){
-        listaDespesas.add(despesa);
-    }
-
-    /**
-     * calcula o total de despesas mensais
-     * @return total de despesas mensais
-     */
-    public float calculaDespesasTotal(){
-        float soma = 0;
-        for (Despesa despesa : listaDespesas){
-            soma += despesa.getValor() * despesa.freq;
-        }
-        return soma;
-    }
-
-    /**
-     * implementação unificada para obter o total do campo
-     */
-    @Override
-    public float calculaValorTotal(){
-        return calculaDespesasTotal();
-    }
-
-    /**
-     * retorna o valor limite do campo de despesa
-     * @return valor limite
-     */
     public float getValorLimite(){
         return this.valorLimite;
     }
 
-    /**
-     * verifica se ja existe uma despesa com o nome dado
-     * @param nome nome da despesa
-     * @return true se existe, false caso contrario
-     */
-    protected boolean existeDespesa(String nome){
-        for (Despesa despesa : listaDespesas){
-            if(despesa.getNome().equals(nome)) return true;
+
+    public List<Despesa> getListaDespesas() {
+        if (listaDespesas == null) {
+            listaDespesas = new ArrayList<>();
         }
-        return false;
+        return listaDespesas;
+    }
+
+    // ------------ Métodos -------------------
+    public void addDespesas(Despesa despesa){
+        listaDespesas.add(despesa);
+    }
+
+    public void removerDespesa(Despesa despesa) {
+        listaDespesas.remove(despesa);
+    }
+
+    public float calculaValorTotal(){
+        float soma = 0;
+        for (Despesa despesa : listaDespesas){
+            soma += despesa.getValor() * despesa.getFreq();
+        }
+        return soma;
     }
 }

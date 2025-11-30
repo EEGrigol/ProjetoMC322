@@ -20,13 +20,14 @@ public abstract class Movimentacao {
     public Movimentacao() {
 
     }
-
+    //Construtor
     public Movimentacao(String nome, float valor, int freq) {
         this.nome = nome;
         this.valor = valor;
         this.freq = freq;
     }
 
+    //Setters e Getters
     public float getValor(){
         return this.valor;
     }
@@ -41,5 +42,16 @@ public abstract class Movimentacao {
 
     public float getValorMensalizado(){
         return this.valor * this.freq;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome; 
+    
+    }
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+    public void setFreq(int freq) {
+        this.freq = freq; 
     }
 }

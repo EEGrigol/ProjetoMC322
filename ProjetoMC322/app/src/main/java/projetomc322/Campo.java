@@ -11,10 +11,6 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlAccessorType(XmlAccessType.FIELD)
 public abstract class Campo {
     protected String nome;
-
-    /**
-     * subclasses devem implementar cálculo do valor total do campo (mensalizado)
-     */
     public abstract float calculaValorTotal();
 
     /**

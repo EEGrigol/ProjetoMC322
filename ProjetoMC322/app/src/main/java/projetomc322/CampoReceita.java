@@ -1,55 +1,47 @@
 package projetomc322;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * representa um campo de receita
- */
-public class CampoReceita extends Campo {
+@XmlAccessorType(XmlAccessType.FIELD)
+public class CampoReceita {
+    public String nome;
+    public CampoReceita() {}
+
+
+    @XmlElement(name = "receita")
     private List<Receita> listaReceitas = new ArrayList<>();
 
+    //Construtor
     public CampoReceita(String nome){
         this.nome = nome;
     }
 
-    /**
-     * adiciona uma nova receita
-     * @param receita receita a ser adicionada
-     */
+    //Getter
+    public List<Receita> getListaReceitas() {
+        if (listaReceitas == null) {
+            listaReceitas = new ArrayList<>();
+        }
+        return listaReceitas;
+    }
+
+    //------------ MÉTODOS --------------
     public void addReceita(Receita receita){
         listaReceitas.add(receita);
     }
 
-    /**
-     * calcula o total de receitas mensais
-     * @return total de receitas mensais
-     */
-    public float calculaReceitaTotal(){
+    public void removerReceita(Receita receita) {
+        listaReceitas.remove(receita);
+    }
+
+    public float calculaValorTotal(){
         float soma = 0;
         for (Receita receita : listaReceitas){
-            soma += receita.getValor() * receita.freq;
+            soma += receita.getValor() * receita.getFreq();
         }
         return soma;
-    }
-
-    /**
-     * implementação unificada para obter o total do campo
-     */
-    @Override
-    public float calculaValorTotal(){
-        return calculaReceitaTotal();
-    }
-
-    /**
-     * verifica se ja existe uma receita com o nome dado
-     * @param nome nome da receita
-     * @return true se existe, false caso contrario
-     */
-    protected boolean existeReceita(String nome){
-        for (Receita receita : listaReceitas){
-            if(receita.getNome().equals(nome)) return true;
-        }
-        return false;
     }
 }

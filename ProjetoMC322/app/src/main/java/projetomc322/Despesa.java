@@ -8,11 +8,15 @@ import javax.xml.bind.annotation.XmlAccessorType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Despesa extends Movimentacao {
-    private float valorMensalizado;
+    //private float valorMensalizado;
 
+    public Despesa() {
+        super();
+    }
+    
     public Despesa(String nome, float valor, int freq){
         super(nome, valor, freq);
-        this.valorMensalizado = this.valor * this.freq;
+        //this.valorMensalizado = this.valor * this.freq;
     }
 }
 
