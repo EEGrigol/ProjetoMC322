@@ -2,13 +2,14 @@ package projetomc322;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
 /**
  * representa um campo financeiro
  */
 @XmlSeeAlso({CampoDespesa.class, CampoReceita.class})
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public abstract class Campo {
     protected String nome;
     public abstract float calculaValorTotal();
@@ -17,6 +18,7 @@ public abstract class Campo {
      * retorna o nome do campo
      * @return nome do campo
      */
+    @XmlElement(name="nomeCampo")
     public String getNome(){
         return this.nome;
     }
