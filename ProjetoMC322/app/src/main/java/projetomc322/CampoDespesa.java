@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CampoDespesa {
+public class CampoDespesa extends Campo {
     public String nome; 
     private float valorLimite;
     
@@ -39,7 +39,7 @@ public class CampoDespesa {
     }
 
     // ------------ Métodos -------------------
-    public void addDespesas(Despesa despesa){
+    public void addDespesa(Despesa despesa){
         listaDespesas.add(despesa);
     }
 

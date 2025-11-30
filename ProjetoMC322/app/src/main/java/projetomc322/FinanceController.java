@@ -159,7 +159,7 @@ public class FinanceController {
         abrirJanela("Nova Despesa", gerenciador.getCamposDespesa(), (nome, val, freq, campoObj) -> {
             CampoDespesa c = (CampoDespesa) campoObj;
             Despesa d = new Despesa(nome, val, freq);
-            c.addDespesas(d);
+            c.addDespesa(d);
             atualizarTabelaVisual(layout.accordionDespesas, c, d);
             
             // Verifica a cada adição se o limite foi estourado

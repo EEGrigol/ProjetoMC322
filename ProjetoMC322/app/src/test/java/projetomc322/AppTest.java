@@ -7,7 +7,6 @@ class AppTest {
 
     @Test
     void deveCalcularTotalMensalCorretamente() {
-        // instância movida para dentro do teste
         CampoReceita campoReceita = new CampoReceita("Receitas");
 
         Receita receitaMensal = new Receita("Salário", 100f, 1);
@@ -17,27 +16,23 @@ class AppTest {
         campoReceita.addReceita(receitaSemanal);
 
         float esperado = 200f;
-
-        assertEquals(esperado, campoReceita.calculaReceitaTotal());
+        assertEquals(esperado, campoReceita.getValorTotal(), 0.0001f);
     }
 
     @Test
     void deveLancarExcecaoQuandoListaInternaForNull() throws Exception {
-    CampoReceita campoReceita = new CampoReceita("Receitas");
+        CampoReceita campoReceita = new CampoReceita("Receitas");
 
-    // força a lista interna a ser null
-    var field = CampoReceita.class.getDeclaredField("ListaReceitas");
-    field.setAccessible(true);
-    field.set(campoReceita, null);
+        // força a lista interna a ser null (nome do campo corrigido)
+        var field = CampoReceita.class.getDeclaredField("listaReceitas");
+        field.setAccessible(true);
+        field.set(campoReceita, null);
 
-    assertThrows(NullPointerException.class, () -> {
-        campoReceita.calculaReceitaTotal();
-    });
-}
-    /**
-     * Teste equivalente para CampoDespesa
-     * valida o cálculo total de despesas mensais
-     */
+        assertThrows(NullPointerException.class, () -> {
+            campoReceita.getValorTotal();
+        });
+    }
+
     @Test
     void deveCalcularTotalDespesasCorretamente() {
         CampoDespesa campoDespesa = new CampoDespesa("Despesas Fixas");
@@ -45,11 +40,10 @@ class AppTest {
         Despesa despesaMensal = new Despesa("Aluguel", 100f, 1);
         Despesa despesaSemanal = new Despesa("Transporte", 25f, 4);
 
-        campoDespesa.addDespesas(despesaMensal);
-        campoDespesa.addDespesas(despesaSemanal);
+        campoDespesa.addDespesa(despesaMensal);
+        campoDespesa.addDespesa(despesaSemanal);
 
         float esperado = 200f;
-
-        assertEquals(esperado, campoDespesa.calculaValorTotal());
+        assertEquals(esperado, campoDespesa.calculaValorTotal(), 0.0001f);
     }
 }

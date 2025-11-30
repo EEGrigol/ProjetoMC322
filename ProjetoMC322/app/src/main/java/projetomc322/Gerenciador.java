@@ -38,4 +38,19 @@ public class Gerenciador {
     public void setCamposReceita(List<CampoReceita> camposReceita) {
         this.camposReceita = camposReceita;
     }
+
+    public float getSaldoFinal(){
+        float totalReceitas = 0;
+        float totalDespesas = 0;
+
+        for(CampoReceita cr : camposReceita){
+            totalReceitas += cr.calculaValorTotal();
+        }
+
+        for(CampoDespesa cd : camposDespesa){
+            totalDespesas += cd.calculaValorTotal();
+        }
+
+        return totalReceitas - totalDespesas;
+    }
 }

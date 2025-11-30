@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CampoReceita {
+public class CampoReceita extends Campo {
     public String nome;
     public CampoReceita() {}
 
